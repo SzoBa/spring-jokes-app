@@ -1,16 +1,16 @@
 package com.springjoke.services;
 
+
 import guru.springframework.norris.chuck.ChuckNorrisQuotes;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class JokeService implements QuoteService{
 
-    private final ChuckNorrisQuotes chuckNorrisQuotes;
+    @Autowired
+    private ChuckNorrisQuotes chuckNorrisQuotes;
 
-    public JokeService(ChuckNorrisQuotes chuckNorrisQuotes) {
-        this.chuckNorrisQuotes = chuckNorrisQuotes;
-    }
 
     @Override
     public String getQuote() {

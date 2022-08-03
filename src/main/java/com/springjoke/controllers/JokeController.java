@@ -1,23 +1,26 @@
 package com.springjoke.controllers;
 
 import com.springjoke.services.QuoteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class JokeController {
 
-    @Autowired
-    private QuoteService quoteService;
+    private final QuoteService quoteService;
 
-    @RequestMapping("/")
-    public String index(Model model) {
+    public JokeController(QuoteService quoteService) {
+        this.quoteService = quoteService;
+    }
+
+    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
+    public String getJoke(Model model) {
 
         model.addAttribute("joke", quoteService.getQuote());
 
-        return "joke";
+        return "index";
     }
 
 }
